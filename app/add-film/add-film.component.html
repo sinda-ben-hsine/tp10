@@ -1,0 +1,62 @@
+<div class="container">
+  <h2>Ajouter un Film :</h2>
+  <form [formGroup]="addFilmForm" (ngSubmit)="addFilm()">
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>ID Film</label>
+      <input type="text" formControlName="idFilm" class="form-control" required />
+      <div *ngIf="addFilmForm.get('idFilm')?.touched && addFilmForm.get('idFilm')?.errors?.['required']" class="text-danger">
+        Le ID du Film est obligatoire.
+      </div>
+      <div *ngIf="addFilmForm.get('idFilm')?.touched && addFilmForm.get('idFilm')?.errors?.['minlength']" class="text-danger">
+        Le ID doit contenir au moins 1 caractère.
+      </div>
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Nom Film</label>
+      <input type="text" formControlName="nomFilm" class="form-control" required />
+      <div *ngIf="addFilmForm.get('nomFilm')?.touched && addFilmForm.get('nomFilm')?.errors?.['required']" class="text-danger">
+        Le nom du Film est obligatoire.
+      </div>
+      <div *ngIf="addFilmForm.get('nomFilm')?.touched && addFilmForm.get('nomFilm')?.errors?.['minlength']" class="text-danger">
+        Le nom doit contenir au moins 3 caractères.
+      </div>
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Durée en Minutes</label>
+      <input type="number" formControlName="dureeFilm" class="form-control" required />
+      <div *ngIf="addFilmForm.get('dureeFilm')?.touched && addFilmForm.get('dureeFilm')?.errors?.['required']" class="text-danger">
+        La durée est obligatoire.
+      </div>
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Date de Sortie</label>
+      <input type="date" formControlName="dateSortir" class="form-control" required />
+      <div *ngIf="addFilmForm.get('dateSortir')?.touched && addFilmForm.get('dateSortir')?.errors?.['required']" class="text-danger">
+        La date de sortie est obligatoire.
+      </div>
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Genre</label>
+      <select class="form-control" formControlName="idGen" required>
+        <option value="">Sélectionner un Genre</option>
+        <option *ngFor="let gen of genres" [value]="gen.idGen">{{ gen.nomGen }}</option>
+      </select>
+      <div *ngIf="addFilmForm.get('idGen')?.touched && addFilmForm.get('idGen')?.errors?.['required']" class="text-danger">
+        La catégorie est obligatoire.
+      </div>
+    </div>
+
+    <div class="mt-2">
+      <button type="submit" class="btn btn-success">
+        Ajouter
+      </button>
+      <div>
+
+      </div>
+    </div>
+  </form>
+</div>

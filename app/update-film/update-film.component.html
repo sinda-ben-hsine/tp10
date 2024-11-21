@@ -1,0 +1,71 @@
+<form [formGroup]="filmForm" (ngSubmit)="updateFilm()">
+  <div class="col-sm-2 col-md-2 col-lg-2">
+    <label>ID Film</label>
+    <input
+      type="text"
+      formControlName="idFilm"
+      class="form-control"
+      readonly
+    />
+  </div>
+
+  <div class="col-sm-4 col-md-4 col-lg-4">
+    <label>Nom Film</label>
+    <input
+      type="text"
+      formControlName="nomFilm"
+      class="form-control"
+    />
+    <div *ngIf="filmForm.get('nomFilm')?.invalid && filmForm.get('nomFilm')?.touched" class="text-danger">
+      Le nom du film est obligatoire et doit comporter au moins 3 caractères.
+    </div>
+  </div>
+
+  <div class="col-sm-2 col-md-2 col-lg-2">
+    <label>Durée en Minutes</label>
+    <input
+      type="number"
+      formControlName="dureeFilm"
+      class="form-control"
+    />
+    <div *ngIf="filmForm.get('dureeFilm')?.invalid && filmForm.get('dureeFilm')?.touched" class="text-danger">
+      La durée est obligatoire et doit être supérieure à 0.
+    </div>
+  </div>
+
+  <div class="col-sm-4 col-md-4 col-lg-4">
+    <label>Date de Sortie</label>
+    <input
+      type="date"
+      formControlName="dateSortir"
+      class="form-control"
+    />
+    <div *ngIf="filmForm.get('dateSortir')?.invalid && filmForm.get('dateSortir')?.touched" class="text-danger">
+      La date de sortie est obligatoire.
+    </div>
+  </div>
+
+  <div class="col-sm-4 col-md-4 col-lg-4">
+    <label>Genre</label>
+    <select
+      class="form-control"
+      formControlName="genre"
+    >
+      <option *ngFor="let genre of genres" [value]="genre.idGen">
+        {{ genre.nomGen }}
+      </option>
+    </select>
+    <div *ngIf="filmForm.get('genre')?.invalid && filmForm.get('genre')?.touched" class="text-danger">
+      Le genre est obligatoire.
+    </div>
+  </div>
+
+  <div class="mt-2">
+    <button type="submit" class="btn btn-success" [disabled]="filmForm.invalid">
+      Mettre à Jour
+    </button>
+    <div>
+ 
+    </div>
+  </div>
+</form>
